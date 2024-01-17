@@ -12,10 +12,7 @@ const config: NuxtConfig = {
           { charset: 'utf-8' }, 
           { name: 'viewport', content: 'width=750,user-scalable=no,target-densitydpi=device-dpi' },
       ],
-      link: [
-        // { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css' },
-        // { rel: 'icon', href: '<%= BASE_URL %>favicon.ico' },
-      ],
+      link: [],
       script: [
         { src: '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js' },
       ],

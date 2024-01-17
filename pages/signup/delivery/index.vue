@@ -1,6 +1,6 @@
 <template>
     <div class="pages">
-      <SignupSubHeader title="회원가입" summery="배송지 정보 입력"/>
+      <SignupSubHeader title="회원가입" summary="배송지 정보 입력"/>
   
       <table>
         <tr>

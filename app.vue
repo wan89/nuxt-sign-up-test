@@ -16,6 +16,8 @@
       data() {
         return {}
       },
+      
+
       head: {
         title: 'sign up!',
         meta: [
