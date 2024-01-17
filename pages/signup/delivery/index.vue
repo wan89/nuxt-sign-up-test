@@ -1,9 +1,6 @@
 <template>
     <div class="pages">
-      <div class="contents-title">
-        <h2>회원가입</h2>
-        <p>배송지정보 입력</p>
-      </div>
+      <SignupSubHeader title="회원가입" summery="배송지 정보 입력"/>
   
       <table>
         <tr>
@@ -49,87 +46,77 @@
     </div>
   </template>
   
-  <script>
+
+<script lang="ts" setup>
+  import { useJoinUser } from "@/stores/joinUser";
   import "../signup.scss";
-  
-  export default {
-    head: {
-      title: '회원가입 - 배송지정보 입력',
-      meta: [
-        { charset: 'utf-8' }, 
-        { name: 'viewport', content: 'width=750,user-scalable=no,target-densitydpi=device-dpi' },
-        { hid: 'description', name: 'description', content: '소개 문구' },
-        { name: 'title', content: '타이틀' },
-        { name: 'keywords', content: '키워드' }
-      ],
-    },
-    data() {
-      return {
-        name: '',
-        nameErrorMsg: '',
-        phone: '',
-        phoneErrorMsg: '',
-        adressMain: '',
-        adressDetail: '',
-        addrErrorMsg: ''
-      };
-    },
-    mounted(){
-      
-    },
-    methods: {
-      nextStep() {
-        // 에러 메시지 초기화
-        this.nameErrorMsg = '';
-        this.phoneErrorMsg = '';
-        this.addrErrorMsg = '';
-        
-        // 인풋값 검사 체크
-        if (this.name === '') {
-          this.nameErrorMsg = '이름을 입력해주세요.';
-        } else if(!this.isValidName(this.name)){
-          this.nameErrorMsg = '이름을 정확히 입력해주세요.';
-        } else if (this.phone === '') {
-          this.phoneErrorMsg = '전화번호를 입력해주세요.';
-        } else if(!this.isValidPhone(this.phone)){
-          this.phoneErrorMsg = '전화번호를 정확히 입력해주세요.';
-        } else if (this.adressMain === '') {
-          this.addrErrorMsg = '주소를 입력해주세요';
-        } else {
-          this.$router.push('/signup/payment');
-        }
+  import { useRouter } from 'vue-router'
 
-        
-      },
+  import { REG_EXP } from "@/public/Utils";
 
-      isValidName(name){
-        const koreanRegex = /^[가-힣]{2,}$/;
-        const englishRegex = /^[a-zA-Z]{3,}$/;
-        // console.log(koreanRegex.test(name), englishRegex.test(name))
-
-        return koreanRegex.test(name) || englishRegex.test(name);
-      },
-
-      isValidPhone(phone){
-        if(phone.length < 10) return false;
-        const phoneRegex = /^0\d{1,3}[-\s]?(\d{3,4}[-\s]?\d{4})$/;
-        
-        return phoneRegex.test(phone)
-      },
-
-      goBackPage() {
-        this.$router.go('/signup');
-      },
-
-      postCodeSearch(){
-        new daum.Postcode({
-          oncomplete: (data)=> {
-            console.log(data.roadAddress);
-            this.adressMain = data.roadAddress;
-            
-          }
-        }).open();
-      }
-    },
+  /* eslint-disable no-unused-vars */
+  // 다음 주소 API
+  declare global {
+    interface Window { daum: any; }
   }
-  </script>
+  /* eslint-disable no-unused-vars */
+
+  // 필요한 데이터만 정의
+  type IDaumPostAPIData = {
+    roadAddress: string
+  }
+
+  // =================================
+
+  const router = useRouter();
+  const store = useJoinUser();
+  const name = ref('');
+  const phone = ref('');
+  const adressMain = ref('');
+  const adressDetail = ref('');
+
+  const nameErrorMsg = ref('');
+  const phoneErrorMsg = ref('');
+  const addrErrorMsg = ref('');
+
+  // =================================
+  const goBackPage = () => router.push('/signup');
+
+  const nextStep = () => {
+    // 에러 메시지 초기화
+    nameErrorMsg.value = '';
+    phoneErrorMsg.value = '';
+    addrErrorMsg.value = '';
+    
+    // 인풋값 검사 체크
+    if (name.value === '') {
+      nameErrorMsg.value = '이름을 입력해주세요.';
+    } else if(!(REG_EXP.EN_NAME_TEST(name.value) || REG_EXP.KR_NAME_TEST(name.value))){
+      nameErrorMsg.value = '이름을 정확히 입력해주세요.';
+    } else if (phone.value === '') {
+      phoneErrorMsg.value = '전화번호를 입력해주세요.';
+    } else if(!REG_EXP.PHONE_TEST(phone.value) && phone.value.length < 10){
+      phoneErrorMsg.value = '전화번호를 정확히 입력해주세요.';
+    } else if (adressMain.value === '') {
+      addrErrorMsg.value = '주소를 입력해주세요';
+    } else {
+      store.setName(name.value);
+      store.setPhone(phone.value);
+      store.setAddress(adressMain.value + ' ' + adressDetail.value);
+      router.push('/signup/payment');
+    }
+
+    
+  };
+
+  const postCodeSearch = () => {
+    // 다음 주소 API
+    new window.daum.Postcode({
+      oncomplete: (data:IDaumPostAPIData)=> {
+        // console.log(data.roadAddress);
+        adressMain.value = data.roadAddress;
+      }
+    }).open();
+  };
+
+</script>

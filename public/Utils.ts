@@ -1,19 +1,13 @@
-import { useGtag } from "vue-gtag-next";
+export const REG_EXP = {
+    /**  */
+    PASSWORD_TEST: (password:string) => /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/.test(password),
+    /**  */
+    EMAIL_TEST: (email:string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
+    PHONE_TEST: (phone:string) => /^0\d{1,3}[-\s]?(\d{3,4}[-\s]?\d{4})$/.test(phone),
 
-/** 문자열로된 이미지 바이너리 데이터를 이미지 파일 데이터로 변환시킵니다, */
-export function dataURLtoFile(dataurl:string, fileName:string){
-    const arr:Array<String> = dataurl.split(',');
-
-    let mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[1]), 
-        n = bstr.length, 
-        u8arr = new Uint8Array(n);
-
-    while(n--){
-        u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], fileName, {type:mime});
-}
+    KR_NAME_TEST: (name:string) => /^[가-힣]{2,}$/.test(name),
+    EN_NAME_TEST: (name:string) => /^[a-zA-Z]{3,}$/.test(name),
+};
 
 /** string에 끼워있는 BR 태그를 강제개행으로 변경시켜 리턴시킵니다 */
 export function stringToBrTag(str:string){ 
@@ -51,12 +45,4 @@ export function dateFormat(date:any) {
     second = second >= 10 ? second : '0' + second;
 
     return date.getFullYear() + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
-}
-
-/** 구글 트래킹용 */
-export function gaTrack (name:string,label:string) {
-    useGtag().event(name, {
-        'event_category' : 'click',
-        'event_label' : label
-    });
 }

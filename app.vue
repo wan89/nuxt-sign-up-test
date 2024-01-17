@@ -14,9 +14,7 @@
     export default {
       name: 'hello-signup',
       data() {
-        return {
-          isGoTopBtn :false
-        }
+        return {}
       },
       head: {
         title: 'sign up!',
