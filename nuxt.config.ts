@@ -13,15 +13,17 @@ const config: NuxtConfig = {
           { name: 'viewport', content: 'width=750,user-scalable=no,target-densitydpi=device-dpi' },
       ],
       link: [
-        { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css' },
+        // { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css' },
         // { rel: 'icon', href: '<%= BASE_URL %>favicon.ico' },
       ],
       script: [
-        { src: '//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=159ac098233764363697bc5976c3d45c', defer: true },
-        { src: '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js' },
+        // { src: '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js' },
       ],
     }
   },
+  css: [
+    '@/public/common.scss'
+  ],
   modules: [
     'nuxt-swiper',
     '@pinia/nuxt',

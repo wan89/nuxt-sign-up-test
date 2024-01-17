@@ -1,5 +1,8 @@
 <template>
-  <div>hello</div>
+  <div class="pages">
+    
+    <a href="/signup">회원가입</a>
+  </div>
 </template>
 
 <script>

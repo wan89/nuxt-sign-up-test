@@ -5,25 +5,12 @@
 </template>
 
 <style lang="scss" scoped>
-  .down-popup{
-    width:100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); flex-direction:column; position: fixed; top:0; left: 0; z-index: 9999; display: flex; align-items: center; justify-content: center;
-    div { width:300px; height:385px; cursor: pointer; }
-    p { color:white; padding-top: 10px; border-bottom: 1px solid white; cursor: pointer; }
-  }
-  @media screen and (max-width: 840px) {
-    .down-popup{
-      div{ width:600px; height:765px;}
-      p { color:white; padding-top: 30px; border-bottom: 2px solid white; font-size: 30px; }
-    }
-  }
-  @keyframes slidein {
-    from { margin-top: 30px; opacity: 0; }
-    to { margin-top: 0; opacity: 1; }
+  .app{
+    width:100%;
   }
 </style>
-<script lang="ts">
-    import './public/common.scss';
 
+<script lang="ts">
     export default {
       name: 'hello-signup',
       data() {
