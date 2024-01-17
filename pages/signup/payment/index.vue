@@ -12,8 +12,8 @@
           </td>
         </tr>
         <tr>
-          <td colspan="2">
-            <input type="text"/>
+          <td colspan="2" class="td-card-number">
+            <input type="text"/><input type="text"/><input type="text"/><input type="text"/>
           </td>
         </tr>
       </table>
@@ -21,7 +21,14 @@
       <button class="next">다음</button>
     </div>
   </template>
-  
+  <style lang="scss" scoped>
+  .td-card-number {
+    display: flex;
+    input {
+      margin-right: 5px;
+    }
+  };
+</style>
   <script>
   import "../signup.scss";
   

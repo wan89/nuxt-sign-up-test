@@ -17,7 +17,7 @@ const config: NuxtConfig = {
         // { rel: 'icon', href: '<%= BASE_URL %>favicon.ico' },
       ],
       script: [
-        // { src: '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js' },
+        { src: '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js' },
       ],
     }
   },
