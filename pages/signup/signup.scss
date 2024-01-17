@@ -4,8 +4,11 @@
 
 table {
   margin-bottom: 30px;
- td { padding: 5px 10px; } 
- input { width: 100%;}
+ td { 
+    padding: 5px 10px;
+  }
+  td > a { color: red; font-size: 10px;} 
+ input { width: 90%;}
 }
 
 .step-btns {
