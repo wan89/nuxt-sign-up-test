@@ -7,7 +7,7 @@ table {
  td { 
     padding: 5px 10px; 
   }
-  td > a { color: red; font-size: 10px;} 
+  td > a { color: red; font-size: 10px; display: block;} 
   input { width: 90%;}
 }
 

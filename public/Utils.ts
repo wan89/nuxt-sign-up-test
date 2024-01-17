@@ -3,7 +3,8 @@ export const REG_EXP = {
     PASSWORD_TEST: (password:string) => /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/.test(password),
     /**  */
     EMAIL_TEST: (email:string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
-    PHONE_TEST: (phone:string) => /^0\d{1,3}[-\s]?(\d{3,4}[-\s]?\d{4})$/.test(phone),
+    HYPHEN_PHONE_TEST: (phone:string) => /^0\d{2}-\d{3,4}-\d{4}$/.test(phone),
+    PHONE_TEST: (phone:string) => /^0\d{9,10}$/.test(phone),
 
     KR_NAME_TEST: (name:string) => /^[가-힣]{2,}$/.test(name),
     EN_NAME_TEST: (name:string) => /^[a-zA-Z]{3,}$/.test(name),

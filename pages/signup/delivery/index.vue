@@ -95,7 +95,7 @@
       nameErrorMsg.value = '이름을 정확히 입력해주세요.';
     } else if (phone.value === '') {
       phoneErrorMsg.value = '전화번호를 입력해주세요.';
-    } else if(!REG_EXP.PHONE_TEST(phone.value) && phone.value.length < 10){
+    } else if(!phoneValidation(phone.value)){
       phoneErrorMsg.value = '전화번호를 정확히 입력해주세요.';
     } else if (adressMain.value === '') {
       addrErrorMsg.value = '주소를 입력해주세요';
@@ -105,8 +105,19 @@
       store.setAddress(adressMain.value + ' ' + adressDetail.value);
       router.push('/signup/payment');
     }
+  };
 
-    
+  const phoneValidation = (phoneNumStr:string) => {
+    //문자열만 존재하는경우 최소값
+    if(phone.value.length < 10) return false;
+    //하이픈과 공백이 같이 들어가 있는 경우
+    if(phone.value.indexOf('-') !== -1 && phone.value.indexOf(' ') !== -1) return false;
+    let data = phoneNumStr.replaceAll(' ', '-');
+
+    //하이픈이 있는경우와 없는경우 분기처리
+    return data.indexOf('-') === -1 ?
+      REG_EXP.PHONE_TEST(data) :
+      REG_EXP.HYPHEN_PHONE_TEST(data);
   };
 
   const postCodeSearch = () => {

@@ -22,7 +22,7 @@ const config: NuxtConfig = {
     '@/public/common.scss'
   ],
   modules: [
-    'nuxt-swiper',
+    // 'nuxt-swiper',
     '@pinia/nuxt',
   ],
 };
