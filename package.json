@@ -9,17 +9,14 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@types/navermaps": "^3.6.4",
     "nuxt": "^3.2.3",
-    "sass": "^1.58.3",
-    "vue-gtag-next": "^1.14.0"
+    "sass": "^1.58.3"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.7",
     "bootstrap-vue": "^2.23.1",
     "nuxt-swiper": "^1.0.1",
     "pinia": "^2.0.33",
-    "vue3-naver-maps": "^4.1.0",
     "vuex": "^4.0.2"
   },
   "overrides": {
